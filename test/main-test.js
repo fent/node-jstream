@@ -25,7 +25,10 @@ describe('Read a file', function() {
     var n = 0;
 
     var rs = fs.createReadStream(file);
-    rs.pipe(new JStream()).on('data', function(obj) {
+    var jstream = new JStream();
+
+    rs.pipe(jstream);
+    jstream.on('data', function(obj) {
       assert.deepEqual(obj, expected[n++]);
     });
 
