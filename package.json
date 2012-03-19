@@ -1,0 +1,31 @@
+{
+  "name": "jstream",
+  "description": "Continously reads in JSON and outputs Javascript objects.",
+  "keywords": ["stream", "json"],
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fent/jstream.git"
+  },
+  "author": "Roly Fentanes (https://github.com/fent)",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "mocha -R spec test/*-test.js"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "clarinet": "0.5.x"
+  },
+  "devDependencies": {
+    "mocha": "0.x.x"
+  },
+  "licenses": [ {
+    "type": "MIT",
+    "url" : "http://github.com/fent/jstream/raw/master/LICENSE"
+  }]
+}
