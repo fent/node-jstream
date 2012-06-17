@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/fent/jstream.git"
+    "url": "git://github.com/fent/node-jstream.git"
   },
   "author": "Roly Fentanes (https://github.com/fent)",
   "main": "./lib/index.js",
@@ -26,6 +26,6 @@
   },
   "licenses": [ {
     "type": "MIT",
-    "url" : "http://github.com/fent/jstream/raw/master/LICENSE"
+    "url" : "http://github.com/fent/node-jstream/raw/master/LICENSE"
   }]
 }
