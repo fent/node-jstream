@@ -15,14 +15,11 @@
   "directories": {
     "lib": "./lib"
   },
-  "engines": {
-    "node": "*"
-  },
   "dependencies": {
     "clarinet": "0.5.x"
   },
   "devDependencies": {
-    "mocha": "0.x.x"
+    "mocha": "x"
   },
   "licenses": [ {
     "type": "MIT",
