@@ -1,8 +1,7 @@
-var JStream = require('..')
-  , assert = require('assert')
-  , fs = require('fs')
+var run  = require('./run')
   , path = require('path')
-  , file = path.join(__dirname, 'data.json');
+  , file = path.join(__dirname, 'assets', 'data.json')
+  ;
 
 
 var expected = [
@@ -20,18 +19,5 @@ var expected = [
   }
 ];
 
-describe('Read a file', function() {
-  it('JStream emits Javascript objects', function(done) {
-    var n = 0;
 
-    var rs = fs.createReadStream(file);
-    var jstream = new JStream();
-
-    rs.pipe(jstream);
-    jstream.on('data', function(obj) {
-      assert.deepEqual(obj, expected[n++]);
-    });
-
-    rs.on('end', done);
-  });
-});
+run('Read a file with several JSON strings', file, expected);

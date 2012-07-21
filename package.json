@@ -1,7 +1,7 @@
 {
   "name": "jstream",
   "description": "Continously reads in JSON and outputs Javascript objects.",
-  "keywords": ["stream", "json"],
+  "keywords": ["stream", "json", "parse", "api"],
   "version": "0.1.0",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "clarinet": "0.5.x"
+    "clarinet": "~0.6.0"
   },
   "devDependencies": {
     "mocha": "x"
