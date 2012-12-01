@@ -10,16 +10,16 @@
   "author": "Roly Fentanes (https://github.com/fent)",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "mocha -R spec test/*-test.js"
+    "test": "mocha -R spec --ignore-leaks test/*-test.js"
   },
   "directories": {
     "lib": "./lib"
   },
   "dependencies": {
-    "clarinet": "~0.6.0"
+    "clarinet": "~0.7.0"
   },
   "devDependencies": {
-    "mocha": "x"
+    "mocha": "*"
   },
   "licenses": [ {
     "type": "MIT",
