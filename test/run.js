@@ -29,7 +29,6 @@ module.exports = function runTest(description, file, expected, path) {
 
       jstream.on('end', function() {
         assert.ok(dataEmitted);
-        console.log('stuff', global.domain, global._events);
         done();
       });
     });
