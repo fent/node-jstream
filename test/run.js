@@ -27,10 +27,11 @@ module.exports = function runTest(description, file, expected, path) {
         assert.deepEqual(obj, expected[n++]);
       });
 
-      rs.on('end', function() {
+      jstream.on('end', function() {
         assert.ok(dataEmitted);
+        console.log('stuff', global.domain, global._events);
         done();
       });
     });
   });
-}
+};
