@@ -6,14 +6,13 @@ Continuously reads in JSON and outputs Javascript objects. Meant to be used with
 
 ```js
 var JStream = require('jstream');
-var http = require('http');
+var request = require('request');
 
-http.request({ host: 'myhost.com', path: '/' }, function(res) {
-  res.pipe(new JStream()).on('data', function(obj) {
+request('http://api.myhost.com/updates.json')
+  .pipe(new JStream()).on('data', function(obj) {
     console.log('new js object');
     console.log(obj);
   });
-});
 ```
 
 # API
