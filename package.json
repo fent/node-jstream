@@ -2,7 +2,7 @@
   "name": "jstream",
   "description": "Continously reads in JSON and outputs Javascript objects.",
   "keywords": ["stream", "json", "parse", "api"],
-  "version": "0.2.2",
+  "version": "0.2.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/fent/node-jstream.git"
