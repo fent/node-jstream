@@ -1,7 +1,6 @@
-var JStream = require('..')
-  , assert = require('assert')
-  , fs = require('fs')
-  ;
+var JStream = require('..');
+var assert  = require('assert');
+var fs      = require('fs');
 
 
 /**
