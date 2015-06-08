@@ -16,7 +16,7 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "clarinet": "~0.8.1",
+    "clarinet": "~0.11.0",
     "readable-stream": "~1.1.9"
   },
   "devDependencies": {
