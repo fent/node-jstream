@@ -1,8 +1,13 @@
 {
   "name": "jstream",
   "description": "Continously reads in JSON and outputs Javascript objects.",
-  "keywords": ["stream", "json", "parse", "api"],
-  "version": "0.2.7",
+  "keywords": [
+    "stream",
+    "json",
+    "parse",
+    "api"
+  ],
+  "version": "0.2.8",
   "repository": {
     "type": "git",
     "url": "git://github.com/fent/node-jstream.git"
@@ -21,8 +26,10 @@
   "devDependencies": {
     "mocha": "*"
   },
-  "licenses": [ {
-    "type": "MIT",
-    "url" : "http://github.com/fent/node-jstream/raw/master/LICENSE"
-  }]
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/fent/node-jstream/raw/master/LICENSE"
+    }
+  ]
 }
