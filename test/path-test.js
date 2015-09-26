@@ -2,7 +2,7 @@ var run  = require('./run');
 var path = require('path');
 
 
-/*jshint quotmark:false */
+/* jshint quotmark:false */
 var file1 = path.join(__dirname, 'assets', 'propName.json');
 var expected1 = ['foo', 'bar'];
 
@@ -14,22 +14,22 @@ var expected3 = [500, 2000, true];
 
 var file4 = path.join(__dirname, 'assets', 'function.json');
 var expected4 = [
-  "200"
-,  [42, { "more": "results" }, 23]
-, "long"
-, "200"
-,  [42, { "more": "results" }, 23]
-, "long"
+  "200",
+   [42, { "more": "results" }, 23],
+  "long",
+  "200",
+   [42, { "more": "results" }, 23],
+  "long"
 ];
 
 var file5 = path.join(__dirname, 'assets', 'many.json');
 var expected5 = [
-  { "_id":  "change1_0.6995461115147918"
-  , "_rev": "1-e240bae28c7bb3667f02760f6398d508"
-  , "hello": 1 }
-, { "_id":"change2_0.6995461115147918"
-  , "_rev":"1-13677d36b98c0c075145bb8975105153"
-  , "hello": 2 }
+  { "_id":  "change1_0.6995461115147918",
+    "_rev": "1-e240bae28c7bb3667f02760f6398d508",
+    "hello": 1 },
+  { "_id":"change2_0.6995461115147918",
+    "_rev":"1-13677d36b98c0c075145bb8975105153",
+    "hello": 2 }
 ];
 
 

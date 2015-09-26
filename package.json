@@ -16,8 +16,7 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "clarinet": "~0.11.0",
-    "readable-stream": "~1.1.9"
+    "clarinet": "~0.11.0"
   },
   "devDependencies": {
     "mocha": "*"
