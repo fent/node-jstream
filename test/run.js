@@ -4,10 +4,10 @@ var fs      = require('fs');
 
 
 /**
- * Tests that a `file` emits `expected` results given a `path`
+ * Tests that a `file` emits `expected` results given a `path`.
  *
- * @param (string) description
- * @param (string) file
+ * @param (String) description
+ * @param (String) file
  * @param (Array.Object) expected
  * @param (Array.Object) path
  */
