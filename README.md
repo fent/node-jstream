@@ -1,6 +1,8 @@
-# node-jstream [![Build Status](https://secure.travis-ci.org/fent/node-jstream.png)](http://travis-ci.org/fent/node-jstream)
+# node-jstream
 
 Continuously reads in JSON and outputs Javascript objects. Meant to be used with keep-alive connections that send back JSON on updates.
+
+[![Build Status](https://secure.travis-ci.org/fent/node-jstream.png)](http://travis-ci.org/fent/node-jstream) [![Dependency Status](https://gemnasium.com/fent/node-jstream.svg)](https://gemnasium.com/fent/node-jstream)
 
 # Usage
 
