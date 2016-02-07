@@ -39,6 +39,10 @@ Creates an instance of JStream. Inherits from `Stream`. Can be written to and em
 
 JStream will emit `newsemitter`, `chain-tiny`, and `Hanzi` in its `data` event.
 
+### JStream.MAX_BUFFER_LENGTH
+
+Defaults to 64 * 1024.
+
 
 # Install
 
