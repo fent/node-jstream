@@ -15,7 +15,7 @@
   "author": "fent (https://github.com/fent)",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "mocha -R spec --ignore-leaks test/*-test.js"
+    "test": "istanbul cover node_modules/.bin/_mocha test/*-test.js"
   },
   "directories": {
     "lib": "./lib"
@@ -24,6 +24,7 @@
     "clarinet": "~0.11.0"
   },
   "devDependencies": {
+    "istanbul": "*",
     "mocha": "*"
   },
   "licenses": [
