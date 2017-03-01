@@ -3,7 +3,7 @@
 Continuously reads in JSON and outputs Javascript objects. Meant to be used with keep-alive connections that send back JSON on updates.
 
 [![Build Status](https://secure.travis-ci.org/fent/node-jstream.svg)](http://travis-ci.org/fent/node-jstream)
-[![Dependency Status](https://gemnasium.com/fent/node-jstream.svg)](https://gemnasium.com/fent/node-jstream)
+[![Dependency Status](https://david-dm.org/fent/node-jstream.svg)](https://david-dm.org/fent/node-jstream)
 [![codecov](https://codecov.io/gh/fent/node-jstream/branch/master/graph/badge.svg)](https://codecov.io/gh/fent/node-jstream)
 
 # Usage
