@@ -1,13 +1,13 @@
-var JStream = require('..');
-var assert  = require('assert');
-var fs      = require('fs');
+const JStream = require('..');
+const assert  = require('assert');
+const fs      = require('fs');
 
 
-describe('Try to parse a non-JSON stream', function() {
-  it('Emits an error', function(done) {
+describe('Try to parse a non-JSON stream', () => {
+  it('Emits an error', (done) => {
     fs.createReadStream(__filename)
       .pipe(new JStream())
-      .on('error', function(err) {
+      .on('error', (err) => {
         assert.ok(err);
         assert.ok(/Non-whitespace before/.test(err.message));
         done();
@@ -15,12 +15,12 @@ describe('Try to parse a non-JSON stream', function() {
   });
 });
 
-describe('Give path with unsupported types', function() {
-  it('Throws an error on instanstiation', function() {
-    assert.throws(function() {
+describe('Give path with unsupported types', () => {
+  it('Throws an error on instanstiation', () => {
+    assert.throws(() => {
       new JStream('hi');
     }, /must be an array/);
-    assert.throws(function() {
+    assert.throws(() => {
       new JStream(['thing', 2, {}]);
     }, /object not supported/);
   });

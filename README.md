@@ -9,11 +9,11 @@ Continuously reads in JSON and outputs Javascript objects. Meant to be used with
 # Usage
 
 ```js
-var JStream = require('jstream');
-var request = require('request');
+const JStream = require('jstream');
+const request = require('request');
 
 request('http://api.myhost.com/updates.json')
-  .pipe(new JStream()).on('data', function(obj) {
+  .pipe(new JStream()).on('data', (obj) => {
     console.log('new js object');
     console.log(obj);
   });
