@@ -1,6 +1,6 @@
-var JStream = require('..');
-var assert  = require('assert');
-var fs      = require('fs');
+const JStream = require('..');
+const assert  = require('assert');
+const fs      = require('fs');
 
 
 /**
@@ -11,9 +11,9 @@ var fs      = require('fs');
  * @param (Array.Object) expected
  * @param (Array.Object) path
  */
-module.exports = function runTest(description, file, expected, path) {
-  describe(description, function() {
-    it('JStream emits expected Javascript objects', function(done) {
+module.exports = (description, file, expected, path) => {
+  describe(description, () => {
+    it('JStream emits expected Javascript objects', (done) => {
       var rs = fs.createReadStream(file);
       var jstream = new JStream(path);
       rs.pipe(jstream);
@@ -21,12 +21,12 @@ module.exports = function runTest(description, file, expected, path) {
       var dataEmitted = false;
       var n = 0;
 
-      jstream.on('data', function(obj) {
+      jstream.on('data', (obj) => {
         dataEmitted = true;
         assert.deepEqual(obj, expected[n++]);
       });
 
-      jstream.on('end', function() {
+      jstream.on('end', () => {
         assert.ok(dataEmitted);
         done();
       });
