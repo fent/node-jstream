@@ -6,20 +6,20 @@ const fs      = require('fs');
 /**
  * Tests that a `file` emits `expected` results given a `path`.
  *
- * @param (String) description
- * @param (String) file
- * @param (Array.Object) expected
- * @param (Array.Object) path
+ * @param {string} description
+ * @param {string} file
+ * @param {Array.<Object>} expected
+ * @param {Array.<Object>} path
  */
 module.exports = (description, file, expected, path) => {
   describe(description, () => {
     it('JStream emits expected Javascript objects', (done) => {
-      var rs = fs.createReadStream(file);
-      var jstream = new JStream(path);
+      const rs = fs.createReadStream(file);
+      const jstream = new JStream(path);
       rs.pipe(jstream);
 
-      var dataEmitted = false;
-      var n = 0;
+      let dataEmitted = false;
+      let n = 0;
 
       jstream.on('data', (obj) => {
         dataEmitted = true;
