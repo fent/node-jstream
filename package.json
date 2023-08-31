@@ -24,7 +24,7 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "clarinet": "~0.12.4"
+    "clarinet": "~0.12.6"
   },
   "devDependencies": {
     "istanbul": "^0.4.5",
