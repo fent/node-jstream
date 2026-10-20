@@ -1,7 +1,6 @@
 const JStream = require('..');
-const assert  = require('assert');
-const fs      = require('fs');
-
+const assert = require('assert');
+const fs = require('fs');
 
 describe('Try to parse a non-JSON stream', () => {
   it('Emits an error', (done) => {

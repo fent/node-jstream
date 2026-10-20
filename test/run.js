@@ -1,7 +1,6 @@
 const JStream = require('..');
-const assert  = require('assert');
-const fs      = require('fs');
-
+const assert = require('assert');
+const fs = require('fs');
 
 /**
  * Tests that a `file` emits `expected` results given a `path`.
