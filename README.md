@@ -2,7 +2,7 @@
 
 Continuously reads in JSON and outputs Javascript objects. Meant to be used with keep-alive connections that send back JSON on updates.
 
-[![npm version](https://img.shields.io/npm/v/jstream.svg)](https://npmjs.org/package/jstream)
+[![npm](https://img.shields.io/npm/v/jstream)](https://www.npmjs.com/package/jstream)
 [![Node CI](https://github.com/fent/node-jstream/actions/workflows/nodejs.yml/badge.svg)](https://github.com/fent/node-jstream/actions/workflows/nodejs.yml)
 [![codecov](https://codecov.io/gh/fent/node-jstream/branch/master/graph/badge.svg)](https://codecov.io/gh/fent/node-jstream)
 
