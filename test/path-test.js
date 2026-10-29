@@ -1,5 +1,5 @@
 const run = require('./run');
-const path = require('path');
+const path = require('node:path');
 
 /* eslint quotes:false */
 const file1 = path.join(__dirname, 'assets', 'propName.json');

@@ -1,7 +1,7 @@
 const JStream = require('..');
 const run = require('./run');
-const assert = require('assert');
-const path = require('path');
+const assert = require('node:assert');
+const path = require('node:path');
 
 /* jshint quotmark:false */
 const file1 = path.join(__dirname, 'assets', 'data.json');
