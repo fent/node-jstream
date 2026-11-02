@@ -1,16 +1,21 @@
-const JStream = require('..');
-const assert = require('node:assert');
-const fs = require('node:fs');
+import assert from 'node:assert';
+import fs from 'node:fs';
+import JStream, { type Path } from '../src';
 
 /**
  * Tests that a `file` emits `expected` results given a `path`.
  *
  * @param {string} description
  * @param {string} file
- * @param {Array.<Object>} expected
- * @param {Array.<Object>} path
+ * @param {unknown[]} expected
+ * @param {Path} [path]
  */
-module.exports = (description, file, expected, path) => {
+export default (
+  description: string,
+  file: string,
+  expected: unknown[],
+  path?: Path,
+): void => {
   describe(description, () => {
     it('JStream emits expected Javascript objects', (done) => {
       const rs = fs.createReadStream(file);
@@ -18,11 +23,11 @@ module.exports = (description, file, expected, path) => {
       rs.pipe(jstream);
 
       let dataEmitted = false;
-      let n = 0;
+      let expectedIndex = 0;
 
-      jstream.on('data', (obj) => {
+      jstream.on('data', (obj: unknown) => {
         dataEmitted = true;
-        assert.deepEqual(obj, expected[n++]);
+        assert.deepEqual(obj, expected[expectedIndex++]);
       });
 
       jstream.on('end', () => {

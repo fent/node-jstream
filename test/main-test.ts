@@ -1,9 +1,8 @@
-const JStream = require('..');
-const run = require('./run');
-const assert = require('node:assert');
-const path = require('node:path');
+import assert from 'node:assert';
+import path from 'node:path';
+import JStream from '../src';
+import run from './run';
 
-/* jshint quotmark:false */
 const file1 = path.join(__dirname, 'assets', 'data.json');
 const expected1 = [
   { hello: 'world' },
@@ -34,5 +33,19 @@ describe('Get exposed MAX_BUFFER_LENGTH', () => {
       JStream.MAX_BUFFER_LENGTH = 256;
       assert.equal(JStream.MAX_BUFFER_LENGTH, 256);
     });
+  });
+});
+
+describe('Module exports interop', () => {
+  it('exports JStream and default aliases', () => {
+    assert.strictEqual(typeof JStream, 'function');
+    assert.strictEqual(
+      (JStream as unknown as Record<string, unknown>).default,
+      JStream,
+    );
+    assert.strictEqual(
+      (JStream as unknown as Record<string, unknown>).JStream,
+      JStream,
+    );
   });
 });

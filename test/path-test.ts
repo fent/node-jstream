@@ -1,7 +1,6 @@
-const run = require('./run');
-const path = require('node:path');
+import path from 'node:path';
+import run from './run';
 
-/* eslint quotes:false */
 const file1 = path.join(__dirname, 'assets', 'propName.json');
 const expected1 = ['foo', 'bar'];
 
@@ -39,6 +38,6 @@ describe('Parse JSON with a path that contains', () => {
   run('a property name', file1, expected1, ['name']);
   run('a boolean and array key', file2, expected2, [true, true, 2]);
   run('a RegExp', file3, expected3, [/^_/]);
-  run('a function', file4, expected4, [(key) => key.length > 5]);
+  run('a function', file4, expected4, [(key) => String(key).length > 5]);
   run('many of the above', file5, expected5, ['rows', true, 'doc']);
 });
