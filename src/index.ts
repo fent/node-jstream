@@ -34,8 +34,13 @@ const match = (
     case 'function':
       return comparator(key);
 
-    case 'object':
-      return comparator.test(String(key));
+    case 'object': {
+      // Global and sticky RegExps keep state between calls.
+      comparator.lastIndex = 0;
+      const matched = comparator.test(String(key));
+      comparator.lastIndex = 0;
+      return matched;
+    }
   }
 };
 
@@ -79,6 +84,8 @@ class JStream extends Transform {
       // Add some listeners only if path is given.
       const onvaluepath = (value: unknown) => {
         if (
+          // `push(null)` ends the stream, so a matched null can't be emitted.
+          value !== null &&
           pathMatch &&
           stack.length === path.length &&
           match(currKey, comparator)
@@ -88,12 +95,16 @@ class JStream extends Transform {
       };
 
       const onopenpath = () => {
-        if (stack.length) {
-          parentPathMatch = pathMatch =
-            parentPathMatch && match(currKey, comparator);
-        }
+        const isMatch = match(currKey, comparator);
 
-        comparator = path[stack.length];
+        // Containers below the matched depth don't affect the match.
+        if (stack.length <= path.length) {
+          if (stack.length) {
+            parentPathMatch = pathMatch = parentPathMatch && isMatch;
+          }
+
+          comparator = path[stack.length];
+        }
       };
 
       parser.on('value', onvaluepath);
@@ -170,7 +181,10 @@ class JStream extends Transform {
     if (path) {
       const onclosepath = () => {
         if (pathMatch && stack.length === path.length) {
-          this.push((currObj as JsonRecord)[currKey]);
+          // A closed container in an array is stored at the index before the
+          // parent's next key.
+          const key = inArray ? (currKey as number) - 1 : currKey;
+          this.push((currObj as JsonRecord)[key]);
         }
         comparator = path[stack.length - 1];
       };
