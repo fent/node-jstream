@@ -44,6 +44,26 @@ const match = (
   }
 };
 
+/**
+ * Assign to a container without letting a `__proto__` key change its prototype.
+ */
+const setValue = (
+  obj: JsonContainer,
+  key: string | number,
+  value: unknown,
+): void => {
+  if (key === '__proto__') {
+    Object.defineProperty(obj, key, {
+      value,
+      enumerable: true,
+      configurable: true,
+      writable: true,
+    });
+    return;
+  }
+  (obj as JsonRecord)[key] = value;
+};
+
 class JStream extends Transform {
   static JStream = JStream;
   static default = JStream;
@@ -113,7 +133,7 @@ class JStream extends Transform {
     }
 
     parser.on('value', (value: unknown) => {
-      (currObj as JsonRecord)[currKey] = value;
+      setValue(currObj, currKey, value);
       if (inArray) {
         (currKey as number)++;
       }
@@ -144,13 +164,13 @@ class JStream extends Transform {
       // clarinet passes the object's first child key, or nothing when the
       // object is empty, so the container type comes from the event.
       const obj: JsonContainer = {};
-      (currObj as JsonRecord)[currKey] = obj;
+      setValue(currObj, currKey, obj);
       enterContainer(obj, key ?? currKey, false);
     };
 
     const onopenarray = () => {
       const obj: JsonContainer = [];
-      (currObj as JsonRecord)[currKey] = obj;
+      setValue(currObj, currKey, obj);
       enterContainer(obj, 0, true);
     };
 
