@@ -23,7 +23,7 @@ request('http://api.myhost.com/updates.json')
 ### new JStream([path])
 Creates an instance of JStream. Inherits from `Stream`. Can be written to and emits `data` events with Javascript objects.
 
-`path` can be an array of property names, `RegExp`'s, booleans, and/or functions. Objects that match will be emitted in `data` events. Passing no `path` means emitting whole Javascript objects as they come in. For example, given the `path` `['results', true, 'id']` and the following JSON gets written into JStream
+`path` can be an array of property names, `RegExp`'s, booleans, and/or functions. Objects that match will be emitted in `data` events. Passing no `path` emits whole root objects as they come in, or every element of a root array. `null` values are not emitted because a stream uses `null` to signal its end. For example, given the `path` `['results', true, 'id']` and the following JSON gets written into JStream
 
 ```js
 { "results": [

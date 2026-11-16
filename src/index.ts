@@ -220,12 +220,27 @@ class JStream extends Transform {
       parser.on('closeobject', onclosepath);
       parser.on('closearray', onclosepath);
     } else {
-      // If `path` is not given, emit `data` event whenever a full
-      // object on the root is parsed.
-      parser.on('closeobject', () => {
+      // If `path` is not given, emit a full root object, or every element of
+      // a root array, as it finishes parsing.
+      const pushCompleted = () => {
         if (!stack.length || (stack.length === 1 && inArray)) {
           const key = inArray ? (currKey as number) - 1 : currKey;
           this.push((currObj as JsonRecord)[key]);
+        }
+      };
+      parser.on('closeobject', pushCompleted);
+
+      parser.on('closearray', () => {
+        // Elements of a root array, but not the root array itself.
+        if (stack.length === 1 && inArray) {
+          this.push((currObj as JsonRecord)[(currKey as number) - 1]);
+        }
+      });
+
+      parser.on('value', (value: unknown) => {
+        // `push(null)` ends the stream, so null elements are skipped.
+        if (value !== null && stack.length === 1 && inArray) {
+          this.push(value);
         }
       });
     }
