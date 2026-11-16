@@ -112,23 +112,11 @@ class JStream extends Transform {
       currKey = key;
     });
 
-    const onopen = (key?: string) => {
-      let obj: JsonContainer;
-      let openArray: boolean;
-      let nextKey: string | number;
-
-      if (key === undefined) {
-        // openarray
-        obj = (currObj as JsonRecord)[currKey] = [];
-        openArray = true;
-        nextKey = 0;
-      } else {
-        // openobject
-        obj = (currObj as JsonRecord)[currKey] = {};
-        openArray = false;
-        nextKey = key;
-      }
-
+    const enterContainer = (
+      obj: JsonContainer,
+      nextKey: string | number,
+      opensArray: boolean,
+    ) => {
       stack.push({
         obj: currObj,
         key: typeof currKey === 'number' && inArray ? currKey + 1 : currKey,
@@ -138,7 +126,21 @@ class JStream extends Transform {
 
       currObj = obj;
       currKey = nextKey;
-      inArray = openArray;
+      inArray = opensArray;
+    };
+
+    const onopenobject = (key?: string) => {
+      // clarinet passes the object's first child key, or nothing when the
+      // object is empty, so the container type comes from the event.
+      const obj: JsonContainer = {};
+      (currObj as JsonRecord)[currKey] = obj;
+      enterContainer(obj, key ?? currKey, false);
+    };
+
+    const onopenarray = () => {
+      const obj: JsonContainer = [];
+      (currObj as JsonRecord)[currKey] = obj;
+      enterContainer(obj, 0, true);
     };
 
     const onclose = () => {
@@ -151,9 +153,9 @@ class JStream extends Transform {
         : true;
     };
 
-    parser.on('openobject', onopen);
+    parser.on('openobject', onopenobject);
     parser.on('closeobject', onclose);
-    parser.on('openarray', onopen);
+    parser.on('openarray', onopenarray);
     parser.on('closearray', onclose);
 
     parser.on('error', (err: Error) => {
