@@ -1,6 +1,13 @@
 import { Transform } from 'node:stream';
 import clarinet from 'clarinet';
 
+// @types/clarinet requires a chunk, but clarinet treats it as optional.
+declare module 'clarinet' {
+  interface CStream {
+    end(chunk?: string): void;
+  }
+}
+
 type PathComparator = JStream.PathComparator;
 type Path = JStream.Path;
 type JsonRecord = JStream.JsonRecord;
@@ -69,6 +76,7 @@ class JStream extends Transform {
   static default = JStream;
 
   public parser: clarinet.CStream;
+  private _hasContent = false;
 
   constructor(path?: Path) {
     super({ objectMode: true });
@@ -233,6 +241,17 @@ class JStream extends Transform {
   }
 
   /**
+   * Ends the parser so it can report truncated input.
+   */
+  override _flush(callback: (err?: Error | null) => void): void {
+    // An empty or whitespace-only stream is not a truncated document.
+    if (this._hasContent) {
+      this.parser.end();
+    }
+    callback();
+  }
+
+  /**
    * Writes to the parser.
    */
   override _transform(
@@ -240,6 +259,9 @@ class JStream extends Transform {
     _encoding: BufferEncoding,
     callback: (err?: Error | null) => void,
   ): void {
+    if (!this._hasContent) {
+      this._hasContent = /\S/.test(chunk.toString());
+    }
     (
       this.parser as unknown as { write: (chunk: Buffer | string) => void }
     ).write(chunk);
